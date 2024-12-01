@@ -66,11 +66,18 @@ const CardSuites = () => {
   return (
     <div className="container mt-5">
       <h2>Informações das Suítes</h2>
-      <div className="row">
+      <div className="row g-3 d-flex justify-content-start">
         {suites.map((suite) => (
-          <div className="col-12 col-lg-2 mb-1" key={suite.suite}>
-            <div className="card" style={{ ...getCardColor(suite.tipo, suite.flag), borderRadius: '10px' }}>
-              <div className="card-body p-3">
+          <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-1" key={suite.suite}>
+            <div
+              className="card"
+              style={{
+                ...getCardColor(suite.tipo, suite.flag),
+                borderRadius: '10px',
+                boxShadow: '0 4px 8px rgba(0, 0, 1, 1)',
+              }}
+            >
+              <div className="card-body">
                 <h5 className="card-title text-truncate">{suite.suite}</h5>
                 <p className="card-text text-truncate">{suite.descricao}</p>
               </div>

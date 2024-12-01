@@ -4,7 +4,6 @@ import './AguardandoArrumacao.css';
 const ModalAguardandoArrumacao = ({ show, close, suites }) => {
   if (!show) return null;
 
-  // Ordena as suítes por nome
   const sortedSuites = [...suites].sort((a, b) => a.suite.localeCompare(b.suite));
 
   return (
@@ -13,12 +12,9 @@ const ModalAguardandoArrumacao = ({ show, close, suites }) => {
         <div className="modal-content modal-custom">
           <div className="modal-header">
             <h5 className="modal-title">Suítes à Espera de Arrumação</h5>
-            <button type="button" className="close" onClick={close}>
-              <span aria-hidden="true">&times;</span>
-            </button>
           </div>
           <div className="modal-body">
-            <div className="row">
+            <div className="row g-3 d-flex justify-content-start">
               {sortedSuites.length > 0 ? (
                 sortedSuites.map((suite) => (
                   <div className="col-md-4 mb-3" key={suite.suite}>

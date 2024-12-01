@@ -44,7 +44,7 @@ const CardComponent = () => {
         </div>
         <div className="col-12 col-md-6 col-lg-3 mb-4">
           <div className="card text-white bg-success d-flex align-items-center p-4 rounded-3">
-            <FaBed size={30} className="mr-3" />
+            {/* <FaBed size={30} className="mr-3" /> */}
             <div className="d-flex flex-column">
               <span>Ocupação das Suítes</span>
               <strong className="display-4">{ocupacao}/{totalSuites}</strong>
@@ -53,7 +53,7 @@ const CardComponent = () => {
         </div>
         <div className="col-12 col-md-6 col-lg-3 mb-4">
             <div className="card clickable-card text-white bg-warning d-flex align-items-center p-4 rounded-3" onClick={handleSuiteClick}>
-                <FaBed size={30} className="mr-3" />
+                {/* <FaBed size={30} className="mr-3" /> */}
                 <div className="d-flex flex-column">
                 <span>Suítes à espera de arrumação</span>
                 <strong className="display-4">{esperaArrumacao.length}/{totalSuites}</strong>

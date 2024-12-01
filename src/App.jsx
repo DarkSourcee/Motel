@@ -1,7 +1,8 @@
 import React from 'react';
 import Sidebar from './components/SlideBar/Sidebar';
 import CardComponent from './components/Card/CardComponent';
-import CardSuites from './components/CardSuites/CardSuites'
+import CardSuites from './components/CardSuites/CardSuites';
+import CardLegend from './components/CardLegend/CardLegend';
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
         <CardComponent />
         <div className="mb-4"></div>
         <CardSuites />
+        <CardLegend />
       </div>
     </div>
   );

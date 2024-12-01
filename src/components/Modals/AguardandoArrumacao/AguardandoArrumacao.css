@@ -1,0 +1,44 @@
+.modal-custom {
+    background-color: #f1f1f1;
+    border-radius: 10px;
+  }
+  
+  .modal-header {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .modal-title {
+    color: #333;
+  }
+  
+  .close {
+    color: #333;
+  }
+  
+  .card-custom {
+    background-color: #e6e6e6;
+    border-radius: 8px;
+  }
+  
+  .card-body {
+    padding: 10px;
+  }
+  
+  .modal-footer {
+    border-top: 1px solid #ddd;
+  }
+  
+  .modal-body {
+    padding: 20px;
+  }
+  
+  .card {
+    margin-bottom: 10px;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  

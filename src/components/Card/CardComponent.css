@@ -1,0 +1,25 @@
+.clickable-card {
+    cursor: pointer;
+    position: relative;
+    border: 2px solid transparent; 
+  }
+  
+  .clickable-card:hover {
+    border-color: #fff; 
+  }
+  
+  .clickable-card::after {
+    content: '→'; 
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 20px;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .clickable-card:hover::after {
+    opacity: 1; 
+  }
+  

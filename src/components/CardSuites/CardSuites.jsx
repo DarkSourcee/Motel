@@ -12,7 +12,7 @@ const CardSuites = () => {
         const sortedSuites = response.data.suites.sort((a, b) => {
             return a.suite.localeCompare(b.suite); 
         });
-        setSuites(sortedSuites );
+        setSuites(sortedSuites);
         setLoading(false);
       } catch (error) {
         console.error('Erro ao buscar dados:', error);
@@ -23,6 +23,42 @@ const CardSuites = () => {
     fetchData();
   }, []);
 
+  const getCardColor = (tipo, flag) => {
+    let backgroundColor, color;
+
+    if (flag === "O") {
+      switch (tipo) {
+        case "PERIODO":
+          backgroundColor = "#4BA151";
+          color = "#FFFFFF";
+          break;
+        case "DIARIA":
+          backgroundColor = "#EB8C11";
+          color = "#FFFFFF";
+          break;
+        case "PERNOITE":
+          backgroundColor = "#5CACEE";
+          color = "#FFFFFF";
+          break;
+        case "PROMOCIONAL":
+          backgroundColor = "#0059A0";
+          color = "#FFFFFF";
+          break;
+        default:
+          backgroundColor = "#f0f0f0";
+          color = "#000000";
+      }
+    } else if (flag === "EA") {
+      backgroundColor = "#F0E68C";
+      color = "#000000";
+    } else {
+      backgroundColor = "#f0f0f0";
+      color = "#000000";
+    }
+
+    return { backgroundColor, color };
+  };
+
   if (loading) {
     return <div className="text-center">Carregando...</div>;
   }
@@ -32,13 +68,11 @@ const CardSuites = () => {
       <h2>Informações das Suítes</h2>
       <div className="row">
         {suites.map((suite) => (
-          <div className="col-md-2 mb-2" key={suite.suite}>
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">{suite.suite}</h5>
-                <p className="card-text">
-                  {suite.descricao}
-                </p>
+          <div className="col-12 col-lg-2 mb-1" key={suite.suite}>
+            <div className="card" style={{ ...getCardColor(suite.tipo, suite.flag), borderRadius: '10px' }}>
+              <div className="card-body p-3">
+                <h5 className="card-title text-truncate">{suite.suite}</h5>
+                <p className="card-text text-truncate">{suite.descricao}</p>
               </div>
             </div>
           </div>

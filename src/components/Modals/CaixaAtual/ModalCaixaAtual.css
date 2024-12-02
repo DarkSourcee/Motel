@@ -1,0 +1,57 @@
+.modal-backdrop-custom {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1040;
+  }
+  
+  .modal-custom {
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .modal-body {
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  .display-4 {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  button.btn-close {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: #000;
+  }
+  
+  button.btn-secondary {
+    background-color: #6c757d;
+  }
+  
+  .d-flex {
+    display: flex;
+  }
+  
+  .justify-content-between {
+    justify-content: space-between;
+  }
+  
+  hr {
+    border-top: 1px solid #ddd;
+  }
+  
+  span {
+    margin-bottom: 8px;
+  }
+  
+  strong {
+    font-weight: bold;
+  }
+  

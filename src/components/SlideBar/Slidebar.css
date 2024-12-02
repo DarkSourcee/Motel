@@ -1,3 +1,4 @@
+/* Sidebar geral */
 #wrapper {
   display: flex;
 }
@@ -20,6 +21,34 @@
   width: 100px;
 }
 
+/* Configuração e sub-itens */
+.settings-menu {
+  margin-top: 10px;
+  margin-left: 0;
+}
+
+.settings-option {
+  display: block;
+  padding: 10px 15px;
+  margin: 5px 0;
+  background-color: #495057;
+  border: 1px solid #868e96;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.settings-option:hover {
+  background-color: #6c757d;
+  color: white;
+}
+
+/* Configuração - Ícone apenas ao expandir */
+.settings-item h4 .emoji-icon {
+  font-size: 1.5rem;
+}
+
 #page-content-wrapper {
   transition: margin-left 0.3s ease;
 }
@@ -28,6 +57,7 @@
   margin-left: 150px;
 }
 
+/* Botão Hamburguer */
 .hamburger-icon {
   display: flex;
   flex-direction: column;
@@ -56,6 +86,7 @@
   transform: rotate(-45deg) translateY(-6px);
 }
 
+/* Responsividade */
 @media (max-width: 768px) {
   #sidebar {
     width: 80px;
@@ -68,11 +99,4 @@
   #page-content-wrapper {
     margin-left: 80px;
   }
-}
-
-.logo-border {
-  width: 90%;
-  height: 1px;
-  background-color: white;
-  margin: 10px auto; 
 }

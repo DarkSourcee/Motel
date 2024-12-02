@@ -81,7 +81,7 @@ const CardComponent = () => {
         </div>
 
         <div className="col-12 col-md-6 col-lg-3 mb-4">
-          <div className="card text-white bg-success d-flex align-items-center p-4 rounded-3">
+          <div className="card clickable-card text-white bg-success d-flex align-items-center p-4 rounded-3" onClick={handleOcupacaoClick}>
             <div className="d-flex flex-column">
               <span>Ocupação das Suítes</span>
               <strong className="display-4">{ocupacao}/{totalSuites}</strong>
@@ -99,7 +99,7 @@ const CardComponent = () => {
         </div>
 
         <div className="col-12 col-md-6 col-lg-3 mb-4">
-          <div className="card clickable-card text-white bg-danger d-flex align-items-center p-4 rounded-3" onClick={handleOcupacaoClick}>
+          <div className="card text-white bg-danger d-flex align-items-center p-4 rounded-3">
             <div className="d-flex flex-column">
               <span>Informações das Suítes</span>
               <strong className="display-4">{desativadas.length}/{totalSuites}</strong>

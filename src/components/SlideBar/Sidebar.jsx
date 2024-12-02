@@ -12,7 +12,9 @@ const Sidebar = () => {
     <>
       <div className="d-flex" id="wrapper">
         <div
-          className={`bg-dark text-white ${isExpanded ? "sidebar-expanded" : "sidebar-collapsed"} p-3`}
+          className={`bg-dark text-white ${
+            isExpanded ? "sidebar-expanded" : "sidebar-collapsed"
+          } p-3`}
           id="sidebar"
         >
           <div className="hamburger-icon mb-3" onClick={toggleSidebar}>
@@ -23,18 +25,33 @@ const Sidebar = () => {
 
           <ul className="list-unstyled">
             <li>
-              <a href="#home" className="text-white" style={{ textDecoration: 'none' }}>
+              <a
+                href="#home"
+                className="text-white"
+                style={{ textDecoration: "none" }}
+              >
                 <h4>
-                  <span className="emoji-icon" style={{ filter: 'grayscale(100%)' }}>🏪</span>
-                  {isExpanded && ' SELECIONAR HOTEL'}
+                  <span
+                    className="emoji-icon"
+                    style={{ filter: "grayscale(100%)" }}
+                  >
+                    🏪
+                  </span>
+                  {isExpanded && " SELECIONAR HOTEL"}
                 </h4>
               </a>
             </li>
             <li>
-              <a href="#about" className="text-white" style={{ textDecoration: 'none' }}>
+              <a
+                href="#about"
+                className="text-white"
+                style={{ textDecoration: "none" }}
+              >
                 <h4>
-                  <span className="emoji-icon" style={{ color: 'red' }}>🚪</span>
-                  {isExpanded && ' SAIR'}
+                  <span className="emoji-icon" style={{ color: "red" }}>
+                    🚪
+                  </span>
+                  {isExpanded && " SAIR"}
                 </h4>
               </a>
             </li>

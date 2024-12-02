@@ -16,12 +16,13 @@
 }
 
 .card-custom {
-  background-color: rgb(240, 230, 140); 
+  background-color: #3C3C3C; 
   border-radius: 8px;
 }
 
-.card-body {
+.card-body-teste {
   padding: 10px;
+  color: #ddd;
 }
 
 .modal-footer {

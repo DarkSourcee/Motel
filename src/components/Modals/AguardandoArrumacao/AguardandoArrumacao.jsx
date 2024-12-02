@@ -19,7 +19,7 @@ const ModalAguardandoArrumacao = ({ show, close, suites }) => {
                 sortedSuites.map((suite) => (
                   <div className="col-md-4 mb-3" key={suite.suite}>
                     <div className="card card-custom">
-                      <div className="card-body">
+                      <div className="card-body-teste">
                         <h6>{suite.suite}</h6>
                         <p>{suite.descricao}</p>
                       </div>

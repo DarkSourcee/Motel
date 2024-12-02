@@ -1,0 +1,62 @@
+/* Estilização principal do componente */
+.card-legend-container {
+    margin: 20px auto;
+    padding: 10px;
+    max-width: 1200px;
+  }
+  
+  .legend-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Configuração da grade responsiva */
+  .legend-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adapta as colunas automaticamente */
+    gap: 15px; /* Espaço entre os itens */
+  }
+  
+  /* Estilos dos itens da legenda */
+  .legend-item {
+    display: flex;
+    align-items: center;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .legend-color-box {
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    margin-right: 10px;
+  }
+  
+  .legend-text {
+    font-size: 0.9rem;
+    color: #333;
+    white-space: nowrap; /* Impede quebras desnecessárias */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adiciona "..." caso o texto seja muito longo */
+  }
+  
+  /* Melhorias em telas menores */
+  @media (max-width: 576px) {
+    .legend-grid {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+  
+    .legend-item {
+      padding: 8px;
+    }
+  
+    .legend-text {
+      font-size: 0.8rem;
+    }
+  }
+  

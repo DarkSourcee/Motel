@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './ModalCaixaAtual.css';
 
@@ -11,25 +11,15 @@ const ModalCaixaAtual = ({ show, close }) => {
         .then(response => setCaixaData(response.data))
         .catch(error => console.error('Error fetching caixa data:', error));
     }
-  }, [show]);
+  }, [show]);  
 
-  // Calculando o total do caixa
-  const totalCaixa = caixaData.reduce((sum, item) => {
-    if (item.caixa) {
-      return sum + parseFloat(item.caixa.replace(',', '.'));
-    }
-    if (item.Valor) {
-      return sum + parseFloat(item.Valor.replace(',', '.'));
-    }
-    return sum;
-  }, 0).toFixed(2);
+  const caixaValor = caixaData.find(item => item.caixa)?.caixa;
 
   if (!show) return null;
 
   return (
     <>
       <div className="modal-backdrop-custom"></div>
-
       <div className="modal fade show" style={{ display: 'block' }} tabIndex="-1" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content modal-custom">
@@ -40,14 +30,14 @@ const ModalCaixaAtual = ({ show, close }) => {
             <div className="modal-body">
               <div className="d-flex flex-column">
                 <span><strong>💰 Total do Caixa:</strong></span>
-                <strong className="display-4">R$ {totalCaixa}</strong>
+                <strong className="display-4">R$ {caixaValor}</strong>
                 <hr />
                 <span><strong>Forma de Pagamento</strong></span>
                 {caixaData.map((item, index) => (
                   item.FormaPagamento && item.Valor && (
                     <div key={index} className="d-flex justify-content-between">
                       <span>{item.FormaPagamento}</span>
-                      <span>R$ {parseFloat(item.Valor).toFixed(2)}</span>
+                      <span>R$ {parseFloat(item.Valor.replace(',', '.')).toFixed(2)}</span>
                     </div>
                   )
                 ))}

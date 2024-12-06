@@ -3,6 +3,7 @@ import axios from 'axios';
 import ModalAguardandoArrumacao from '../Modals/AguardandoArrumacao/AguardandoArrumacao';
 import ModalOcupacaoSuites from '../Modals/OcupacaoSuites/OcupacaoSuite'; 
 import ModalCaixaAtual from '../Modals/CaixaAtual/ModalCaixaAtual'; 
+import ModalDesativadas from '../Modals/Desativadas/Desativadas';
 import './CardComponent.css';
 
 const CardComponent = () => {
@@ -10,7 +11,8 @@ const CardComponent = () => {
   const [caixaData, setCaixaData] = useState(null); 
   const [showModal, setShowModal] = useState(false);
   const [showModalOcupacao, setShowModalOcupacao] = useState(false); 
-  const [showModalCaixa, setShowModalCaixa] = useState(false); 
+  const [showModalCaixa, setShowModalCaixa] = useState(false);
+  const [showModalDesativadas, setShowModalDesativadas] = useState(false); // Novo estado para o modal
 
   useEffect(() => {
     axios.get('http://motelexotico.ddns.net:1011/info')
@@ -32,7 +34,16 @@ const CardComponent = () => {
   const desativadas = suites.filter(suite => suite.flag === 'D');
   const totalSuites = suites.length;
 
-  const caixaValor = caixaData.find(item => item.caixa)?.caixa;
+  // Calcular o total do caixa
+  const totalCaixa = caixaData.reduce((sum, item) => {
+    if (item.caixa) {
+      return sum + parseFloat(item.caixa.replace(',', '.'));
+    }
+    if (item.Valor) {
+      return sum + parseFloat(item.Valor.replace(',', '.'));
+    }
+    return sum;
+  }, 0).toFixed(2);
 
   const handleSuiteClick = () => {
     setShowModal(true); 
@@ -58,19 +69,30 @@ const CardComponent = () => {
     setShowModalCaixa(false); 
   };
 
+  // Função para abrir o modal de suítes desativadas
+  const handleDesativadasClick = () => {
+    setShowModalDesativadas(true);
+  };
+
+  // Função para fechar o modal de suítes desativadas
+  const closeModalDesativadas = () => {
+    setShowModalDesativadas(false);
+  };
+
   return (
     <div className="container mt-4">
-      <h2>Motel Exótico</h2>
       <div className="row">
+        {/* Card de Caixa Atual */}
         <div className="col-12 col-md-6 col-lg-3 mb-4">
           <div className="card clickable-card text-white bg-primary d-flex align-items-center p-4 rounded-3" onClick={handleCaixaClick}>
             <div className="d-flex flex-column">
               <span>Caixa Atual</span>
-              <div className="display-4">R$ {caixaValor}</div>
+              <div className="display-4">R$ {totalCaixa}</div>
             </div>
           </div>
         </div>
 
+        {/* Card de Ocupação das Suítes */}
         <div className="col-12 col-md-6 col-lg-3 mb-4">
           <div className="card clickable-card text-white bg-success d-flex align-items-center p-4 rounded-3" onClick={handleOcupacaoClick}>
             <div className="d-flex flex-column">
@@ -80,6 +102,7 @@ const CardComponent = () => {
           </div>
         </div>
 
+        {/* Card de Suítes à espera de arrumação */}
         <div className="col-12 col-md-6 col-lg-3 mb-4">
           <div className="card clickable-card text-white bg-secondary d-flex align-items-center p-4 rounded-3" onClick={handleSuiteClick}>
             <div className="d-flex flex-column">
@@ -89,8 +112,9 @@ const CardComponent = () => {
           </div>
         </div>
 
+        {/* Card de Suítes Desativadas */}
         <div className="col-12 col-md-6 col-lg-3 mb-4">
-          <div className="card text-white bg-danger d-flex align-items-center p-4 rounded-3">
+          <div className="card clickable-card text-white bg-danger d-flex align-items-center p-4 rounded-3" onClick={handleDesativadasClick}>
             <div className="d-flex flex-column">
               <span>Informações das Suítes</span>
               <strong className="display-4">{desativadas.length}/{totalSuites}</strong>
@@ -99,9 +123,11 @@ const CardComponent = () => {
         </div>
       </div>
 
+      {/* Modals */}
       <ModalAguardandoArrumacao show={showModal} close={closeModal} suites={esperaArrumacao} />
       <ModalOcupacaoSuites show={showModalOcupacao} close={closeModalOcupacao} suites={suites} />
-      <ModalCaixaAtual show={showModalCaixa} close={closeModalCaixa} caixaData={caixaData} /> {/* Modal de Caixa Atual */}
+      <ModalCaixaAtual show={showModalCaixa} close={closeModalCaixa} caixaData={caixaData} />
+      <ModalDesativadas show={showModalDesativadas} close={closeModalDesativadas} suites={desativadas} /> {/* Novo modal */}
     </div>
   );
 };

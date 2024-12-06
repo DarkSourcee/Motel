@@ -23,65 +23,64 @@ const CardSuites = () => {
 
   const getCardColor = (tipo, flag) => {
     let backgroundColor, color;
-  
+
     if (flag === "O") {
       switch (tipo) {
         case "PERIODO":
-          backgroundColor = "#4BA151";
+          backgroundColor = "linear-gradient(#4BA151, #5CE52B)";
           color = "#FFFFFF";
           break;
         case "DIARIA":
-          backgroundColor = "#EB8C11";
+          backgroundColor = "linear-gradient(#EB8C11, #EDB123)";
           color = "#FFFFFF";
           break;
         case "PERNOITE":
-          backgroundColor = "#5CACEE";
+          backgroundColor = "linear-gradient(#5CACEE, #9DCDF5)";
           color = "#FFFFFF";
           break;
         case "PROMOCIONAL":
-          backgroundColor = "#0059A0";
+          backgroundColor = "linear-gradient(#0059A0, #C8C8E9)";
           color = "#FFFFFF";
           break;
         case "MC": // MAU CLIENTE
-          backgroundColor = "#F194A4";
+          backgroundColor = "linear-gradient(#F194A4, #E74F69)";
           color = "#FFFFFF";
           break;
         default:
-          backgroundColor = "#f0f0f0";
+          backgroundColor = "linear-gradient(#f0f0f0, #f0f0f0)";
           color = "#000000";
       }
     } else if (flag === "EA") { // SUJA
-      backgroundColor = "#3C3C3C";
+      backgroundColor = "linear-gradient(#3C3C3C, #BBB9B4)";
       color = "#BBB9B4";
     } else if (flag === "F" || flag === "M" || flag === "D") { // FAXINA, MANUTENÇÃO, DESATIVADA
-      backgroundColor = "#E14D4D";
-      color = "#FFFFFF"; // Texto branco para melhor contraste
+      backgroundColor = "linear-gradient(#E14D4D, #CA3D3D)";
+      color = "#FFFFFF";
     } else if (flag === "G") { // RESERVA ON-LINE
-      backgroundColor = "#5A083D";
+      backgroundColor = "linear-gradient(#5A083D, #670470)";
       color = "#FFFFFF";
     } else if (flag === "GE" || flag === "GA") { // CLIENTE NA GARAGEM
-      backgroundColor = "#D7A3AC";
+      backgroundColor = "linear-gradient(#D7A3AC, #FFC0CB)";
       color = "#000000";
     } else if (flag === "EM") { // EM ARRUMAÇÃO
-      backgroundColor = "#BDBD1D";
+      backgroundColor = "linear-gradient(#BDBD1D, #ECF309)";
       color = "#000000";
     } else if (flag === "AR") { // À REVISAR
-      backgroundColor = "#865456";
+      backgroundColor = "linear-gradient(#865456, #865456)";
       color = "#FFFFFF";
     } else if (flag === "RA") { // REVISANDO
-      backgroundColor = "#1e5e1e";
+      backgroundColor = "linear-gradient(#1e5e1e, #1e5e1e)";
       color = "#FFFFFF";
     } else if (flag === "C") { // CIGARRO (MAU CHEIRO)
-      backgroundColor = "#8b795e";
+      backgroundColor = "linear-gradient(#8b795e, #8b795e)";
       color = "#FFFFFF";
     } else {
-      backgroundColor = "#f0f0f0"; // DISPONÍVEL
+      backgroundColor = "linear-gradient(#f0f0f0, #f0f0f0)"; // DISPONÍVEL
       color = "#000000";
     }
-  
+
     return { backgroundColor, color };
   };
-  
 
   if (loading) {
     return <div className="text-center">Carregando...</div>;
@@ -89,7 +88,7 @@ const CardSuites = () => {
 
   return (
     <div className="container mt-5">
-      <h2>Informações das Suítes</h2>
+      <h3 className="legend-title">Informações das Suítes</h3>
       <div className="row g-3 d-flex justify-content-start">
         {suites.map((suite) => {
           const { backgroundColor, color } = getCardColor(suite.tipo, suite.flag);
@@ -98,7 +97,7 @@ const CardSuites = () => {
               <div
                 className="card"
                 style={{
-                  backgroundColor,
+                  background: backgroundColor,
                   color,
                   borderRadius: '10px',
                   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',

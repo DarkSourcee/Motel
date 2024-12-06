@@ -1,0 +1,82 @@
+/* Estilo do Modal */
+.modal-custom {
+    background-color: #ffffff;
+    border-radius: 10px;
+    max-width: 600px; /* Definindo uma largura máxima */
+  }
+  
+  /* Estilo da lista */
+  .modal-body ul {
+    list-style-type: none;  /* Remove os marcadores padrão da lista */
+    padding-left: 0; /* Remove o padding padrão */
+  }
+  
+  .modal-body ul li {
+    background-color: #f4f4f4;  /* Cor de fundo para cada item */
+    border-radius: 8px;  /* Bordas arredondadas */
+    padding: 15px;  /* Espaçamento interno */
+    margin-bottom: 10px;  /* Espaçamento entre os itens */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil para destaque */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    transition: all 0.3s ease-in-out;  /* Transição suave */
+  }
+  
+  /* Estilo para o texto */
+  .modal-body ul li strong {
+    font-weight: bold;
+    color: #333;  /* Cor para o texto do número da suíte */
+  }
+  
+  .modal-body ul li span {
+    font-size: 0.9rem;
+  }
+  
+  /* Hover nos itens da lista */
+  .modal-body ul li:hover {
+    background-color: #e0e0e0; /* Cor mais escura no hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);  /* Aumenta a sombra no hover */
+    cursor: pointer;  /* Aponta o cursor para indicar interatividade */
+  }
+  
+  .modal-body ul li p {
+    font-size: 0.9rem;
+    color: #f44336;  /* Cor de erro ou alerta para o texto "Nenhum motivo adicionado" */
+    margin-top: 10px;
+  }
+  
+  /* Estilo do modal-header */
+  .modal-header {
+    border-bottom: 1px solid #ddd;
+    background-color: #f8f8f8;  /* Cor de fundo clara */
+    padding: 15px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Estilo do botão de fechar */
+  .close {
+    font-size: 1.5rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  
+  .close:hover {
+    color: #f44336;  /* Mudança de cor no hover */
+  }
+  
+  /* Estilo do modal-footer */
+  .modal-footer {
+    border-top: 1px solid #ddd;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  

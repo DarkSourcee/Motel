@@ -12,7 +12,7 @@ const CardComponent = () => {
   const [showModal, setShowModal] = useState(false);
   const [showModalOcupacao, setShowModalOcupacao] = useState(false); 
   const [showModalCaixa, setShowModalCaixa] = useState(false);
-  const [showModalDesativadas, setShowModalDesativadas] = useState(false); // Novo estado para o modal
+  const [showModalDesativadas, setShowModalDesativadas] = useState(false); 
 
   useEffect(() => {
     axios.get('http://motelexotico.ddns.net:1011/info')

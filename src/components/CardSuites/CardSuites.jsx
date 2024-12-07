@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './CardSuites.css';
 
 const CardSuites = () => {
   const [suites, setSuites] = useState([]);
@@ -22,65 +23,63 @@ const CardSuites = () => {
   }, []);
 
   const getCardColor = (tipo, flag) => {
-    let backgroundColor, color;
-
+    let background, color;
+  
     if (flag === "O") {
       switch (tipo) {
         case "PERIODO":
-          backgroundColor = "linear-gradient(#4BA151, #5CE52B)";
+          background = "linear-gradient(90deg, #4BA151, #5CE52B)";
           color = "#FFFFFF";
           break;
         case "DIARIA":
-          backgroundColor = "linear-gradient(#EB8C11, #EDB123)";
+          background = "linear-gradient(90deg, #EB8C11, #EDB123)";
           color = "#FFFFFF";
           break;
         case "PERNOITE":
-          backgroundColor = "linear-gradient(#5CACEE, #9DCDF5)";
+          background = "linear-gradient(90deg, #5CACEE, #9DCDF5)";
           color = "#FFFFFF";
           break;
         case "PROMOCIONAL":
-          backgroundColor = "linear-gradient(#0059A0, #C8C8E9)";
+          background = "linear-gradient(90deg, #0059A0, #C8C8E9)";
           color = "#FFFFFF";
           break;
         case "MC": // MAU CLIENTE
-          backgroundColor = "linear-gradient(#F194A4, #E74F69)";
+          background = "linear-gradient(90deg, #F194A4, #E74F69)";
           color = "#FFFFFF";
           break;
         default:
-          backgroundColor = "linear-gradient(#f0f0f0, #f0f0f0)";
-          color = "#000000";
+          background = "#f0f0f0"; // cor de fundo padrão
+          color = "#000000"; // texto preto para fundo claro
       }
     } else if (flag === "EA") { // SUJA
-      backgroundColor = "linear-gradient(#3C3C3C, #BBB9B4)";
-      color = "#BBB9B4";
+      background = "linear-gradient(90deg, #3C3C3C, #BBB9B4)";
+      color = "#ffffff";
     } else if (flag === "F" || flag === "M" || flag === "D") { // FAXINA, MANUTENÇÃO, DESATIVADA
-      backgroundColor = "linear-gradient(#E14D4D, #CA3D3D)";
-      color = "#FFFFFF";
+      background = "linear-gradient(90deg, #E14D4D, #CA3D3D)";
+      color = "#FFFFFF"; // Texto branco para melhor contraste
     } else if (flag === "G") { // RESERVA ON-LINE
-      backgroundColor = "linear-gradient(#5A083D, #670470)";
+      background = "linear-gradient(90deg, #5A083D, #670470)";
       color = "#FFFFFF";
     } else if (flag === "GE" || flag === "GA") { // CLIENTE NA GARAGEM
-      backgroundColor = "linear-gradient(#D7A3AC, #FFC0CB)";
-      color = "#000000";
-    } else if (flag === "EM") { // EM ARRUMAÇÃO
-      backgroundColor = "linear-gradient(#BDBD1D, #ECF309)";
-      color = "#000000";
+      background = "linear-gradient(90deg, #D7A3AC, #FFC0CB)";
+      color = "#000000"; // Texto preto para contraste em fundo claro
+    } else if (flag === "A") { // EM ARRUMAÇÃO
+      background = "linear-gradient(90deg, #BDBD1D, #ECF309)";
+      color = "#000000"; // Texto preto para melhor leitura
     } else if (flag === "AR") { // À REVISAR
-      backgroundColor = "linear-gradient(#865456, #865456)";
+      background = "rgb(134, 84, 86)";
       color = "#FFFFFF";
     } else if (flag === "RA") { // REVISANDO
-      backgroundColor = "linear-gradient(#1e5e1e, #1e5e1e)";
+      background = "rgb(30, 94, 30)";
       color = "#FFFFFF";
     } else if (flag === "C") { // CIGARRO (MAU CHEIRO)
-      backgroundColor = "linear-gradient(#8b795e, #8b795e)";
+      background = "rgb(139, 121, 94)";
       color = "#FFFFFF";
-    } else {
-      backgroundColor = "linear-gradient(#f0f0f0, #f0f0f0)"; // DISPONÍVEL
-      color = "#000000";
-    }
-
-    return { backgroundColor, color };
+    }    
+  
+    return { background, color };
   };
+  
 
   if (loading) {
     return <div className="text-center">Carregando...</div>;
@@ -88,16 +87,16 @@ const CardSuites = () => {
 
   return (
     <div className="container mt-5">
-      <h3 className="legend-title">Informações das Suítes</h3>
+      <h2>Informações das Suítes</h2>
       <div className="row g-3 d-flex justify-content-start">
         {suites.map((suite) => {
-          const { backgroundColor, color } = getCardColor(suite.tipo, suite.flag);
+          const { background, color } = getCardColor(suite.tipo, suite.flag);
           return (
             <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-1" key={suite.suite}>
               <div
-                className="card"
+                className="card button"
                 style={{
-                  background: backgroundColor,
+                  background,
                   color,
                   borderRadius: '10px',
                   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',

@@ -80,7 +80,7 @@ const Sidebar = () => {
           </ul>
 
           {/* Exibe ou oculta as informações do hotel */}
-          {mostrarEmpresa && (
+          {isExpanded && mostrarEmpresa && (
             <div className="mt-4">
               {empresa && (
                 <div className="d-flex align-items-center">

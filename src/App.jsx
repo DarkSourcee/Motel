@@ -1,5 +1,5 @@
 import React from 'react';
-import Sidebar from './components/SlideBar/Sidebar';
+import Sidebar from './components/SideBar/Sidebar';
 import CardComponent from './components/Card/CardComponent';
 import CardSuites from './components/CardSuites/CardSuites';
 import CardLegend from './components/CardLegend/CardLegend';

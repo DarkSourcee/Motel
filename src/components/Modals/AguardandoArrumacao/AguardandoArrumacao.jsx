@@ -19,8 +19,7 @@ const ModalAguardandoArrumacao = ({ show, close, suites }) => {
   const sortedSuites = [...suitesSujas].sort((a, b) => a.suite.localeCompare(b.suite));
 
   return (
-    <>
-      {/* Overlay escuro */}
+    <div className="modal-arrumacao">
       <div className="modal-backdrop-custom" onClick={close}></div>
       <div className="modal fade show" style={{ display: "block" }} tabIndex="-1" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered">
@@ -35,10 +34,10 @@ const ModalAguardandoArrumacao = ({ show, close, suites }) => {
               <h6 className="total-suites">
                 TOTAL DE {sortedSuites.length} SUÍTES À ESPERA DE ARRUMAÇÃO
               </h6>
-              <div className="row g-3 d-flex justify-content-center">
+              <div className="card-container">
                 {sortedSuites.length > 0 ? (
                   sortedSuites.map((suite) => (
-                    <div className="col-md-3 mb-3" key={suite.suite}>
+                    <div className="card-wrapper" key={suite.suite}>
                       <div className="card card-custom">
                         <div className="card-body">
                           <div className="suite-numero">{suite.suite}</div>
@@ -61,7 +60,7 @@ const ModalAguardandoArrumacao = ({ show, close, suites }) => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

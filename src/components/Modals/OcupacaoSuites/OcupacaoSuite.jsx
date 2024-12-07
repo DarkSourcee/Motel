@@ -4,7 +4,6 @@ import './OcupacaoSuite.css';
 
 const ModalOcupacaoSuites = ({ show, close }) => {
   const [suites, setSuites] = useState([]);
-  const [periodoAtual, setPeriodoAtual] = useState("1");
 
   useEffect(() => {
     if (show) {
@@ -29,9 +28,10 @@ const ModalOcupacaoSuites = ({ show, close }) => {
   );
 
   // Contabilizando as suítes de tipo 'DIARIA', 'PERIODO' e 'PERNOITE'
-  const diariaCount = suites.filter(suite => suite.tipo === 'DIARIA').length;
-  const periodoCount = suites.filter(suite => suite.tipo === 'PERIODO').length;
-  const pernoiteCount = suites.filter(suite => suite.tipo === 'PERNOITE').length; 
+  const diariaCount = suites.filter(suite => suite.tipo === 'DIARIA' && suite.comanda?.trim()).length;
+  const periodoCount = suites.filter(suite => suite.tipo === 'PERIODO' && suite.comanda?.trim()).length;
+  const pernoiteCount = suites.filter(suite => suite.tipo === 'PERNOITE' && suite.comanda?.trim()).length;
+
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -58,6 +58,7 @@ const ModalOcupacaoSuites = ({ show, close }) => {
             <div className="modal-header">
               <h5 className="modal-title">Ocupação das Suítes</h5>
             </div>
+
             <div className="modal-body">
               <ul className="list-unstyled ml-3">
                 <li>
@@ -69,7 +70,7 @@ const ModalOcupacaoSuites = ({ show, close }) => {
                 <li>
                   <strong>ㅤ ⏰ Período:</strong>
                   <span className="number-ball" style={{ backgroundColor: 'rgba(40, 167, 69, 0.6)' }}>
-                    {periodoAtual}
+                    {periodoCount}
                   </span>
                 </li>
                 <li>
@@ -84,27 +85,33 @@ const ModalOcupacaoSuites = ({ show, close }) => {
                     {pernoiteCount}
                   </span>
                 </li>
-                <li>
-                  <strong>🧹 Esperando Arrumação:</strong>
-                  <span className="number-ball" style={{ backgroundColor: getStatusColor('EA') }}>
-                    {statusCounts.EA}
-                  </span>
-                </li>
-                <li>
-                  <strong>❌ Desativadas:</strong>
-                  <span className="number-ball" style={{ backgroundColor: getStatusColor('D') }}>
-                    {statusCounts.D}
-                  </span>
-                </li>
-                <li>
-                  <strong>🧼 Em Arrumação:</strong>
-                  <span className="number-ball" style={{ backgroundColor: getStatusColor('A') }}>
-                    {statusCounts.A}
-                  </span>
-                </li>
-
+                {statusCounts.EA > 0 && (
+                  <li>
+                    <strong>🧹 Esperando Arrumação:</strong>
+                    <span className="number-ball" style={{ backgroundColor: getStatusColor('EA') }}>
+                      {statusCounts.EA}
+                    </span>
+                  </li>
+                )}
+                {statusCounts.D > 0 && (
+                  <li>
+                    <strong>❌ Desativadas:</strong>
+                    <span className="number-ball" style={{ backgroundColor: getStatusColor('D') }}>
+                      {statusCounts.D}
+                    </span>
+                  </li>
+                )}
+                {statusCounts.A > 0 && (
+                  <li>
+                    <strong>🧼 Em Arrumação:</strong>
+                    <span className="number-ball" style={{ backgroundColor: getStatusColor('A') }}>
+                      {statusCounts.A}
+                    </span>
+                  </li>
+                )}
               </ul>
             </div>
+
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" onClick={close}>
                 Fechar

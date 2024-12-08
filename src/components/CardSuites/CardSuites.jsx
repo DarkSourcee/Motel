@@ -20,6 +20,12 @@ const CardSuites = () => {
     };
 
     fetchData();
+
+    // Configura o intervalo de 30 segundos para atualizar os dados
+    const intervalId = setInterval(fetchData, 30000);
+
+    // Limpa o intervalo quando o componente for desmontado
+    return () => clearInterval(intervalId);
   }, []);
 
   const getCardColor = (tipo, flag) => {

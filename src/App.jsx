@@ -5,16 +5,6 @@ import CardSuites from './components/CardSuites/CardSuites';
 import CardLegend from './components/CardLegend/CardLegend';
 
 const App = () => {
-  const interval = 30000;
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      window.location.reload();
-    }, interval);
-
-    return () => clearInterval(timer);
-  }, []);
-
   return (
     <div className="d-flex">
       <Sidebar />

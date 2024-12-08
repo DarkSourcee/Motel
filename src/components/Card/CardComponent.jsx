@@ -15,15 +15,27 @@ const CardComponent = () => {
   const [showModalDesativadas, setShowModalDesativadas] = useState(false); 
 
   useEffect(() => {
-    axios.get('http://motelexotico.ddns.net:1011/info')
-      .then(response => setData(response.data))
-      .catch(error => console.error('Error fetching data:', error));
+    // Função para buscar os dados
+    const fetchData = () => {
+      axios.get('http://motelexotico.ddns.net:1011/info')
+        .then(response => setData(response.data))
+        .catch(error => console.error('Error fetching data:', error));
 
       axios.get('http://motelexotico.ddns.net:1011/caixaatual')
-      .then(response => {
-        setCaixaData(response.data);
-      })
-      .catch(error => console.error('Error fetching caixa data:', error));
+        .then(response => {
+          setCaixaData(response.data);
+        })
+        .catch(error => console.error('Error fetching caixa data:', error));
+    };
+
+    // Chama a função pela primeira vez
+    fetchData();
+
+    // Configura o intervalo de 30 segundos para atualizar os dados
+    const intervalId = setInterval(fetchData, 30000);
+
+    // Limpa o intervalo quando o componente for desmontado
+    return () => clearInterval(intervalId);
   }, []);
 
   if (!data || !caixaData) {

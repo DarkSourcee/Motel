@@ -19,8 +19,10 @@ const CardComponent = () => {
       .then(response => setData(response.data))
       .catch(error => console.error('Error fetching data:', error));
 
-    axios.get('http://motelexotico.ddns.net:1011/caixaatual')
-      .then(response => setCaixaData(response.data))
+      axios.get('http://motelexotico.ddns.net:1011/caixaatual')
+      .then(response => {
+        setCaixaData(response.data);
+      })
       .catch(error => console.error('Error fetching caixa data:', error));
   }, []);
 
@@ -34,16 +36,7 @@ const CardComponent = () => {
   const desativadas = suites.filter(suite => suite.flag === 'D');
   const totalSuites = suites.length;
 
-  // Calcular o total do caixa
-  const totalCaixa = caixaData.reduce((sum, item) => {
-    if (item.caixa) {
-      return sum + parseFloat(item.caixa.replace(',', '.'));
-    }
-    if (item.Valor) {
-      return sum + parseFloat(item.Valor.replace(',', '.'));
-    }
-    return sum;
-  }, 0).toFixed(2);
+  const totalCaixa = caixaData[0]?.caixa || 0.00;
 
   const handleSuiteClick = () => {
     setShowModal(true); 
@@ -87,7 +80,7 @@ const CardComponent = () => {
           <div className="card clickable-card text-white bg-primary d-flex align-items-center p-4 rounded-3" onClick={handleCaixaClick}>
             <div className="d-flex flex-column">
               <span>Caixa Atual</span>
-              <div className="display-4">R$ {totalCaixa}</div>
+              <div className="display-4">{totalCaixa}</div>
             </div>
           </div>
         </div>

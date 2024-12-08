@@ -13,16 +13,7 @@ const ModalCaixaAtual = ({ show, close }) => {
     }
   }, [show]);
 
-  // Calculando o total do caixa
-  const totalCaixa = caixaData.reduce((sum, item) => {
-    if (item.caixa) {
-      return sum + parseFloat(item.caixa.replace(',', '.'));
-    }
-    if (item.Valor) {
-      return sum + parseFloat(item.Valor.replace(',', '.'));
-    }
-    return sum;
-  }, 0).toFixed(2);
+  const totalCaixa = caixaData[0]?.caixa || 0.00;
 
   if (!show) return null;
 
@@ -47,7 +38,7 @@ const ModalCaixaAtual = ({ show, close }) => {
                   item.FormaPagamento && item.Valor && (
                     <div key={index} className="d-flex justify-content-between">
                       <span>{item.FormaPagamento}</span>
-                      <span>R$ {parseFloat(item.Valor).toFixed(2)}</span>
+                      <span>R$ {item.Valor}</span>
                     </div>
                   )
                 ))}

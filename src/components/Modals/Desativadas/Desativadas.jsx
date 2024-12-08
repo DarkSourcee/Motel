@@ -4,6 +4,25 @@ import './Desativadas.css';
 const ModalDesativadas = ({ show, close, suites }) => {
   if (!show) return null;
 
+  const getSuiteStatus = (flag) => {
+    switch (flag) {
+      case 'D':
+        return 'Desativada';
+      case 'M':
+        return 'Manutenção';
+      case 'EA':
+        return 'Esperando Arrumação';
+      case 'F':
+        return 'Faxina';
+      case 'A':
+        return 'Em Arrumação';
+      case 'R':
+        return 'Reserva On-line';
+      default:
+        return 'Status desconhecido';
+    }
+  };
+
   return (
     <>
       <div className="modal-backdrop-custom" onClick={close}></div>
@@ -11,7 +30,7 @@ const ModalDesativadas = ({ show, close, suites }) => {
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content modal-custom">
             <div className="modal-header">
-              <h5 className="modal-title">Suítes Desativadas</h5>
+              <h5 className="modal-title">Informações das Suítes</h5>
               <button type="button" className="close" onClick={close} aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -25,6 +44,7 @@ const ModalDesativadas = ({ show, close, suites }) => {
                     <li key={suite.suite}>
                       <strong>Suíte {suite.suite}</strong> -{" "}
                       {suite.comanda ? suite.comanda : "Nenhum motivo adicionado."}
+                      <strong>Status:</strong> {getSuiteStatus(suite.flag)}
                     </li>
                   ))}
                 </ul>

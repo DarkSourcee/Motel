@@ -61,30 +61,38 @@ const ModalOcupacaoSuites = ({ show, close }) => {
 
             <div className="modal-body">
               <ul className="list-unstyled ml-3">
-                <li>
-                  <strong>🛏️ Ocupadas:</strong>
-                  <span className="number-ball" style={{ backgroundColor: getStatusColor('O') }}>
-                    {statusCounts.O}
-                  </span>
-                </li>
-                <li>
-                  <strong>ㅤ ⏰ Período:</strong>
-                  <span className="number-ball" style={{ backgroundColor: 'rgba(40, 167, 69, 0.6)' }}>
-                    {periodoCount}
-                  </span>
-                </li>
-                <li>
-                  <strong>ㅤ 🗓️ Diária:</strong>
-                  <span className="number-ball" style={{ backgroundColor: 'rgba(0, 123, 255, 0.6)' }}>
-                    {diariaCount}
-                  </span>
-                </li>
-                <li>
-                  <strong>ㅤ ⏳ Pernoite:</strong>
-                  <span className="number-ball" style={{ backgroundColor: 'rgba(40, 167, 69, 0.6)' }}>
-                    {pernoiteCount}
-                  </span>
-                </li>
+                {statusCounts.O > 0 && (
+                  <li>
+                    <strong>🛏️ Ocupadas:</strong>
+                    <span className="number-ball" style={{ backgroundColor: getStatusColor('O') }}>
+                      {statusCounts.O}
+                    </span>
+                  </li>
+                )}
+                {periodoCount > 0 && (
+                  <li>
+                    <strong>ㅤ ⏰ Período:</strong>
+                    <span className="number-ball" style={{ backgroundColor: 'rgba(40, 167, 69, 0.6)' }}>
+                      {periodoCount}
+                    </span>
+                  </li>
+                )}
+                {diariaCount > 0 && (
+                  <li>
+                    <strong>ㅤ 🗓️ Diária:</strong>
+                    <span className="number-ball" style={{ backgroundColor: '#EB8C11' }}>
+                      {diariaCount}
+                    </span>
+                  </li>
+                )}
+                {pernoiteCount > 0 && (
+                  <li>
+                    <strong>ㅤ ⏳ Pernoite:</strong>
+                    <span className="number-ball" style={{ backgroundColor: '#9DCDF5' }}>
+                      {pernoiteCount}
+                    </span>
+                  </li>
+                )}
                 {statusCounts.EA > 0 && (
                   <li>
                     <strong>🧹 Esperando Arrumação:</strong>

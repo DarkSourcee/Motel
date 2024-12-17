@@ -15,7 +15,6 @@ const ModalOcupacaoSuites = ({ show, close }) => {
 
   if (!show) return null;
 
-  // Contabilizando as suítes de cada tipo
   const statusCounts = suites.reduce(
     (acc, suite) => {
       const status = suite.flag;
@@ -24,29 +23,13 @@ const ModalOcupacaoSuites = ({ show, close }) => {
       }
       return acc;
     },
-    { O: 0, EA: 0, D: 0, A: 0 }
+    { O: 0, EA: 0, D: 0, F: 0, M: 0, C: 0, A: 0, MC: 0, G: 0, GE: 0, AR: 0, RA: 0 }
   );
 
-  // Contabilizando as suítes de tipo 'DIARIA', 'PERIODO' e 'PERNOITE'
   const diariaCount = suites.filter(suite => suite.tipo === 'DIARIA' && suite.comanda?.trim()).length;
   const periodoCount = suites.filter(suite => suite.tipo === 'PERIODO' && suite.comanda?.trim()).length;
   const pernoiteCount = suites.filter(suite => suite.tipo === 'PERNOITE' && suite.comanda?.trim()).length;
-
-
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 'O':
-        return 'rgba(0, 123, 255, 0.6)';
-      case 'EA':
-        return 'rgba(0, 0, 0, 0.6)';
-      case 'D':
-        return 'rgba(255, 0, 0, 0.6)';
-      case 'A':
-        return 'rgba(255, 193, 7, 0.6)';
-      default:
-        return 'rgba(169, 169, 169, 0.6)';
-    }
-  };
+  const mcCount = suites.filter(suite => suite.tipo === 'MC' && suite.comanda?.trim()).length;
 
   return (
     <>
@@ -64,14 +47,14 @@ const ModalOcupacaoSuites = ({ show, close }) => {
                 {statusCounts.O > 0 && (
                   <li>
                     <strong>🛏️ Ocupadas:</strong>
-                    <span className="number-ball" style={{ backgroundColor: getStatusColor('O') }}>
+                    <span className="number-ball" style={{ backgroundColor: 'rgba(0, 123, 255, 0.6)' }}>
                       {statusCounts.O}
                     </span>
                   </li>
                 )}
                 {periodoCount > 0 && (
                   <li>
-                    <strong>ㅤ ⏰ Período:</strong>
+                    <strong>⏰ Período:</strong>
                     <span className="number-ball" style={{ backgroundColor: 'rgba(40, 167, 69, 0.6)' }}>
                       {periodoCount}
                     </span>
@@ -79,7 +62,7 @@ const ModalOcupacaoSuites = ({ show, close }) => {
                 )}
                 {diariaCount > 0 && (
                   <li>
-                    <strong>ㅤ 🗓️ Diária:</strong>
+                    <strong>🗓️ Diária:</strong>
                     <span className="number-ball" style={{ backgroundColor: '#EB8C11' }}>
                       {diariaCount}
                     </span>
@@ -87,7 +70,7 @@ const ModalOcupacaoSuites = ({ show, close }) => {
                 )}
                 {pernoiteCount > 0 && (
                   <li>
-                    <strong>ㅤ ⏳ Pernoite:</strong>
+                    <strong>⏳ Pernoite:</strong>
                     <span className="number-ball" style={{ backgroundColor: '#9DCDF5' }}>
                       {pernoiteCount}
                     </span>
@@ -96,7 +79,7 @@ const ModalOcupacaoSuites = ({ show, close }) => {
                 {statusCounts.EA > 0 && (
                   <li>
                     <strong>🧹 Esperando Arrumação:</strong>
-                    <span className="number-ball" style={{ backgroundColor: getStatusColor('EA') }}>
+                    <span className="number-ball" style={{ backgroundColor: '#3C3C3C' }}>
                       {statusCounts.EA}
                     </span>
                   </li>
@@ -104,16 +87,88 @@ const ModalOcupacaoSuites = ({ show, close }) => {
                 {statusCounts.D > 0 && (
                   <li>
                     <strong>❌ Desativadas:</strong>
-                    <span className="number-ball" style={{ backgroundColor: getStatusColor('D') }}>
+                    <span className="number-ball" style={{ backgroundColor: '#E14D4D' }}>
                       {statusCounts.D}
+                    </span>
+                  </li>
+                )}
+                {statusCounts.F > 0 && (
+                  <li>
+                    <strong>🧽 Faxina:</strong>
+                    <span className="number-ball" style={{ backgroundColor: '#E14D4D' }}>
+                      {statusCounts.F}
+                    </span>
+                  </li>
+                )}
+                {statusCounts.M > 0 && (
+                  <li>
+                    <strong>🛠 Manutenção:</strong>
+                    <span className="number-ball" style={{ backgroundColor: '#E14D4D' }}>
+                      {statusCounts.M}
+                    </span>
+                  </li>
+                )}
+                {statusCounts.C > 0 && (
+                  <li>
+                    <strong>🚬 Cigarro:</strong>
+                    <span className="number-ball" style={{ backgroundColor: 'rgb(139, 121, 94)' }}>
+                      {statusCounts.C}
                     </span>
                   </li>
                 )}
                 {statusCounts.A > 0 && (
                   <li>
                     <strong>🧼 Em Arrumação:</strong>
-                    <span className="number-ball" style={{ backgroundColor: getStatusColor('A') }}>
+                    <span className="number-ball" style={{ backgroundColor: '#BDBD1D' }}>
                       {statusCounts.A}
+                    </span>
+                  </li>
+                )}
+                {statusCounts.AR > 0 && (
+                  <li>
+                    <strong>🔍 A Revisar:</strong>
+                    <span className="number-ball" style={{ backgroundColor: 'rgb(134, 84, 86)' }}>
+                      {statusCounts.AR}
+                    </span>
+                  </li>
+                )}
+                {statusCounts.RA > 0 && (
+                  <li>
+                    <strong>🛠️ Revisando:</strong>
+                    <span className="number-ball" style={{ backgroundColor: 'rgb(30, 94, 30)' }}>
+                      {statusCounts.RA}
+                    </span>
+                  </li>
+                )}
+                {mcCount > 0 && (
+                  <li>
+                    <strong>⚠️ Mau Cliente:</strong>
+                    <span className="number-ball" style={{ backgroundColor: '#F194A4' }}>
+                      {statusCounts.MC}
+                    </span>
+                  </li>
+                )}
+                {statusCounts.G > 0 && (
+                  <li>
+                    <strong>🌐 Reserva - Online:</strong>
+                    <span className="number-ball" style={{ backgroundColor: '#5A083D' }}>
+                      {statusCounts.G}
+                    </span>
+                  </li>
+                )}
+                {statusCounts.GE > 0 && (
+                  <li>
+                    <strong>🚗 Cliente na Garagem:</strong>
+                    <span className="number-ball" style={{ backgroundColor: '#D7A3AC' }}>
+                      {statusCounts.GE}
+                    </span>
+                  </li>
+                )}
+                {statusCounts.PROMOCIONAL > 0 && (
+                  <li>
+                    <strong>🏷️ Promocional:</strong>
+                    <span className="number-ball" style={{ backgroundColor: '#0059A0' }}>
+                      {statusCounts.PROMOCIONAL}
                     </span>
                   </li>
                 )}

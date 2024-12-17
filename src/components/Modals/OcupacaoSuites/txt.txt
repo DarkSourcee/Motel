@@ -1,0 +1,41 @@
+<li>
+  <strong>🏷️ Promocional:</strong>
+  <span className="number-ball" style={{ backgroundColor: getStatusColor('Promocional') }}>
+    {statusCounts['Promocional']}
+  </span>
+</li>
+
+<li>
+  <strong>⚠️ Mal Cliente:</strong>
+  <span className="number-ball" style={{ backgroundColor: getStatusColor('Mal Cliente') }}>
+    {statusCounts['Mal Cliente']}
+  </span>
+</li>
+
+<li>
+  <strong>🌐 Reserva - Online:</strong>
+  <span className="number-ball" style={{ backgroundColor: getStatusColor('Reserva - Online') }}>
+    {statusCounts['Reserva - Online']}
+  </span>
+</li>
+
+<li>
+  <strong>🚗 Cliente na Garagem:</strong>
+  <span className="number-ball" style={{ backgroundColor: getStatusColor('Cliente na Garagem') }}>
+    {statusCounts['Cliente na Garagem']}
+  </span>
+</li>
+
+<li>
+  <strong>🔍 A Revisar:</strong>
+  <span className="number-ball" style={{ backgroundColor: getStatusColor('A Revisar') }}>
+    {statusCounts['A Revisar']}
+  </span>
+</li>
+
+<li>
+  <strong>🛠️ Revisando:</strong>
+  <span className="number-ball" style={{ backgroundColor: getStatusColor('Revisando') }}>
+    {statusCounts['Revisando']}
+  </span>
+</li>

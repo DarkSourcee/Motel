@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './OcupacaoSuite.css';
+import getApiUrl from '../../../shared/config';
 
 const ModalOcupacaoSuites = ({ show, close }) => {
   const [suites, setSuites] = useState([]);
 
   useEffect(() => {
+    const { url, urlCaixa } = getApiUrl();
     if (show) {
-      axios.get('http://motelexotico.ddns.net:1011/info')
+      axios.get(url)
         .then(response => setSuites(response.data.suites))
         .catch(error => console.error('Error fetching data:', error));
     }

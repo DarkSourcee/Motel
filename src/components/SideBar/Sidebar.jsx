@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Slidebar.css";
+import getApiUrl from "../../shared/config";
 
 const Sidebar = () => {
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
   const [empresa, setEmpresa] = useState(null); // Estado para armazenar o nome da empresa
   const [error, setError] = useState(null);
   const [mostrarEmpresa, setMostrarEmpresa] = useState(false); // Estado para alternar exibição
@@ -14,13 +15,12 @@ const Sidebar = () => {
 
   const fetchEmpresa = async () => {
     try {
+      const { url, urlCaixa } = getApiUrl();
       // Alternar entre mostrar e ocultar as informações
       setMostrarEmpresa((prev) => !prev);
 
       if (!mostrarEmpresa) {
-        const response = await axios.get(
-          "http://motelexotico.ddns.net:1011/info"
-        );
+        const response = await axios.get(url);
         setEmpresa(response.data.empresa); // Armazena o nome da empresa no estado
         setError(null);
       }
@@ -36,7 +36,7 @@ const Sidebar = () => {
         <div
           className={`bg-dark text-white ${
             isExpanded ? "sidebar-expanded" : "sidebar-collapsed"
-          } p-3`}
+          } p-2`}
           id="sidebar"
         >
           <div className="hamburger-icon mb-3" onClick={toggleSidebar}>
@@ -105,7 +105,7 @@ const Sidebar = () => {
         <div
           id="page-content-wrapper"
           style={{
-            marginLeft: isExpanded ? "330px" : "80px",
+            marginLeft: isExpanded ? "330px" : "50px",
             transition: "margin-left 0.3s ease",
             paddingTop: "20px",
           }}

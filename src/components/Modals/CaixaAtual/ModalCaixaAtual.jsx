@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './ModalCaixaAtual.css';
+import getApiUrl from '../../../shared/config';
 
 const ModalCaixaAtual = ({ show, close }) => {
   const [caixaData, setCaixaData] = useState([]);
 
   useEffect(() => {
+    const { url, urlCaixa } = getApiUrl();
     if (show) {
-      axios.get('http://motelexotico.ddns.net:1011/caixaatual')
+      axios.get(urlCaixa)
         .then(response => setCaixaData(response.data))
         .catch(error => console.error('Error fetching caixa data:', error));
     }

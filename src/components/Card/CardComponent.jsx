@@ -5,6 +5,7 @@ import ModalOcupacaoSuites from '../Modals/OcupacaoSuites/OcupacaoSuite';
 import ModalCaixaAtual from '../Modals/CaixaAtual/ModalCaixaAtual'; 
 import ModalDesativadas from '../Modals/Desativadas/Desativadas';
 import './CardComponent.css';
+import getApiUrl from '../../shared/config';
 
 const CardComponent = () => {
   const [data, setData] = useState(null);
@@ -15,13 +16,14 @@ const CardComponent = () => {
   const [showModalDesativadas, setShowModalDesativadas] = useState(false); 
 
   useEffect(() => {
+    const { url, urlCaixa } = getApiUrl();
     // Função para buscar os dados
     const fetchData = () => {
-      axios.get('http://motelexotico.ddns.net:1011/info')
+      axios.get(url)
         .then(response => setData(response.data))
         .catch(error => console.error('Error fetching data:', error));
 
-      axios.get('http://motelexotico.ddns.net:1011/caixaatual')
+      axios.get(urlCaixa)
         .then(response => {
           setCaixaData(response.data);
         })
@@ -31,8 +33,8 @@ const CardComponent = () => {
     // Chama a função pela primeira vez
     fetchData();
 
-    // Configura o intervalo de 30 segundos para atualizar os dados
-    const intervalId = setInterval(fetchData, 30000);
+    // Configura o intervalo de 3 segundos para atualizar os dados
+    const intervalId = setInterval(fetchData, 3000);
 
     // Limpa o intervalo quando o componente for desmontado
     return () => clearInterval(intervalId);

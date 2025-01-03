@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './CardSuites.css';
+import getApiUrl from '../../shared/config';
 
 const CardSuites = () => {
   const [suites, setSuites] = useState([]);
@@ -8,8 +9,9 @@ const CardSuites = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      const { url, urlCaixa } = getApiUrl();
       try {
-        const response = await axios.get('http://motelexotico.ddns.net:1011/info');
+        const response = await axios.get(url);
         const sortedSuites = response.data.suites.sort((a, b) => a.suite.localeCompare(b.suite));
         setSuites(sortedSuites);
         setLoading(false);
@@ -21,8 +23,8 @@ const CardSuites = () => {
 
     fetchData();
 
-    // Configura o intervalo de 30 segundos para atualizar os dados
-    const intervalId = setInterval(fetchData, 30000);
+    // Configura o intervalo de 3 segundos para atualizar os dados
+    const intervalId = setInterval(fetchData, 3000);
 
     // Limpa o intervalo quando o componente for desmontado
     return () => clearInterval(intervalId);
@@ -34,23 +36,23 @@ const CardSuites = () => {
     if (flag === "O") {
       switch (tipo) {
         case "PERIODO":
-          background = "linear-gradient(90deg, #4BA151, #5CE52B)";
+          background = "linear-gradient( #4BA151, #5CE52B)";
           color = "#FFFFFF";
           break;
         case "DIARIA":
-          background = "linear-gradient(90deg, #EB8C11, #EDB123)";
+          background = "linear-gradient( #EB8C11, #EDB123)";
           color = "#FFFFFF";
           break;
         case "PERNOITE":
-          background = "linear-gradient(90deg, #5CACEE, #9DCDF5)";
+          background = "linear-gradient( #5CACEE, #9DCDF5)";
           color = "#FFFFFF";
           break;
         case "PROMOCIONAL":
-          background = "linear-gradient(90deg, #0059A0, #C8C8E9)";
+          background = "linear-gradient( #0059A0, #C8C8E9)";
           color = "#FFFFFF";
           break;
         case "MC": // MAU CLIENTE
-          background = "linear-gradient(90deg, #F194A4, #E74F69)";
+          background = "linear-gradient( #F194A4, #E74F69)";
           color = "#FFFFFF";
           break;
         default:
@@ -58,19 +60,19 @@ const CardSuites = () => {
           color = "#000000"; // texto preto para fundo claro
       }
     } else if (flag === "EA") { // SUJA
-      background = "linear-gradient(90deg, #3C3C3C, #BBB9B4)";
+      background = "linear-gradient( #3C3C3C, #BBB9B4)";
       color = "#ffffff";
     } else if (flag === "F" || flag === "M" || flag === "D") { // FAXINA, MANUTENÇÃO, DESATIVADA
-      background = "linear-gradient(90deg, #E14D4D, #CA3D3D)";
+      background = "linear-gradient( #E14D4D, #CA3D3D)";
       color = "#FFFFFF"; // Texto branco para melhor contraste
     } else if (flag === "G") { // RESERVA ON-LINE
-      background = "linear-gradient(90deg, #5A083D, #670470)";
+      background = "linear-gradient( #5A083D, #670470)";
       color = "#FFFFFF";
     } else if (flag === "GE" || flag === "GA") { // CLIENTE NA GARAGEM
-      background = "linear-gradient(90deg, #D7A3AC, #FFC0CB)";
+      background = "linear-gradient( #D7A3AC, #FFC0CB)";
       color = "#000000"; // Texto preto para contraste em fundo claro
     } else if (flag === "A") { // EM ARRUMAÇÃO
-      background = "linear-gradient(90deg, #BDBD1D, #ECF309)";
+      background = "linear-gradient( #BDBD1D, #ECF309)";
       color = "#000000"; // Texto preto para melhor leitura
     } else if (flag === "AR") { // À REVISAR
       background = "rgb(134, 84, 86)";
@@ -98,7 +100,7 @@ const CardSuites = () => {
         {suites.map((suite) => {
           const { background, color } = getCardColor(suite.tipo, suite.flag);
           return (
-            <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-1" key={suite.suite}>
+            <div className="col-4 col-sm-6 col-md-4 col-lg-3 col-xl-1" key={suite.suite}>
               <div
                 className="card button"
                 style={{

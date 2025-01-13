@@ -4,24 +4,18 @@ import "./Slidebar.css";
 import getApiUrl from "../../shared/config";
 
 const Sidebar = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [empresa, setEmpresa] = useState(null); // Estado para armazenar o nome da empresa
+  const [empresa, setEmpresa] = useState(null);
   const [error, setError] = useState(null);
-  const [mostrarEmpresa, setMostrarEmpresa] = useState(false); // Estado para alternar exibição
-
-  const toggleSidebar = () => {
-    setIsExpanded(!isExpanded);
-  };
+  const [mostrarEmpresa, setMostrarEmpresa] = useState(false);
 
   const fetchEmpresa = async () => {
     try {
-      const { url, urlCaixa } = getApiUrl();
-      // Alternar entre mostrar e ocultar as informações
+      const { url } = getApiUrl();
       setMostrarEmpresa((prev) => !prev);
 
       if (!mostrarEmpresa) {
         const response = await axios.get(url);
-        setEmpresa(response.data.empresa); // Armazena o nome da empresa no estado
+        setEmpresa(response.data.empresa);
         setError(null);
       }
     } catch (err) {
@@ -31,87 +25,34 @@ const Sidebar = () => {
   };
 
   return (
-    <>
-      <div className="d-flex" id="wrapper">
-        <div
-          className={`bg-dark text-white ${
-            isExpanded ? "sidebar-expanded" : "sidebar-collapsed"
-          } p-2`}
-          id="sidebar"
-        >
-          <div className="hamburger-icon mb-3" onClick={toggleSidebar}>
-            <div className={`bar bar1 ${isExpanded ? "" : "open"}`}></div>
-            <div className={`bar bar2 ${isExpanded ? "" : "open"}`}></div>
-            <div className={`bar bar3 ${isExpanded ? "" : "open"}`}></div>
-          </div>
-
-          <ul className="list-unstyled">
-            <li>
-              <button
-                onClick={fetchEmpresa}
-                className="text-white bg-transparent border-0 p-0"
-                style={{ textDecoration: "none", cursor: "pointer" }}
-              >
-                <h4>
-                  <span
-                    className="emoji-icon"
-                    style={{ filter: "grayscale(100%)" }}
-                  >
-                    🏪
-                  </span>
-                  {isExpanded && " SELECIONAR HOTEL"}
-                </h4>
-              </button>
-            </li>
-            <li>
-              <a
-                href="#about"
-                className="text-white"
-                style={{ textDecoration: "none" }}
-              >
-                <h4>
-                  <span className="emoji-icon" style={{ color: "red" }}>
-                    🚪
-                  </span>
-                  {isExpanded && " SAIR"}
-                </h4>
-              </a>
-            </li>
-          </ul>
-
-          {/* Exibe ou oculta as informações do hotel */}
-          {isExpanded && mostrarEmpresa && (
-            <div className="mt-4">
-              {empresa && (
-                <div className="d-flex align-items-center">
-                  <h5 className="mb-0">Hotel Selecionada:</h5>
-                  <button
-                    className="btn btn-primary btn-sm ms-2"
-                    style={{ cursor: "default" }}
-                  >
-                    {empresa}
-                  </button>
-                </div>
-              )}
-              {error && (
-                <div className="mt-4 text-danger">
-                  <p>{error}</p>
-                </div>
-              )}
-            </div>
+    <nav className="navbar bg-dark text-white">
+      <div className="container-fluid">
+        <a href="/" className="navbar-brand text-white">
+          <span role="img" aria-label="Hotel">🏨</span> Sistema Hotel
+        </a>
+        <div className="d-flex align-items-center">
+          <button
+            onClick={fetchEmpresa}
+            className="btn btn-light btn-sm me-2"
+          >
+            {mostrarEmpresa ? "Ocultar Hotel" : "Selecionar Hotel"}
+          </button>
+          <a href="#logout" className="btn btn-danger btn-sm">
+            Sair
+          </a>
+        </div>
+      </div>
+      {/* Exibe o hotel selecionado */}
+      {mostrarEmpresa && (
+        <div className="navbar-info bg-secondary text-white p-2 mt-2">
+          {empresa ? (
+            <span>Hotel Selecionado: {empresa}</span>
+          ) : (
+            error || <span>Carregando...</span>
           )}
         </div>
-
-        <div
-          id="page-content-wrapper"
-          style={{
-            marginLeft: isExpanded ? "330px" : "50px",
-            transition: "margin-left 0.3s ease",
-            paddingTop: "20px",
-          }}
-        ></div>
-      </div>
-    </>
+      )}
+    </nav>
   );
 };
 

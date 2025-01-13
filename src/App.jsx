@@ -1,27 +1,5 @@
-// import React, { useEffect } from 'react';
-// import Sidebar from './components/SideBar/Sidebar';
-// import CardComponent from './components/Card/CardComponent';
-// import CardSuites from './components/CardSuites/CardSuites';
-// import CardLegend from './components/CardLegend/CardLegend';
-
-// const App = () => {
-//   return (
-//     <div className="d-flex">
-//       <Sidebar />
-//       <div className="flex-grow-1 p-3">
-//         <CardComponent />
-//         <div className="mb-4"></div>
-//         <CardSuites />
-//         <CardLegend />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default App;
-
 import React, { useEffect, useState } from 'react';
-import Sidebar from './components/SideBar/Sidebar';
+import Navbar from './components/Navbar/Navbar';
 import CardComponent from './components/Card/CardComponent';
 import CardSuites from './components/CardSuites/CardSuites';
 import CardLegend from './components/CardLegend/CardLegend';
@@ -44,10 +22,10 @@ const App = () => {
 
   return (
     <div className="d-flex">
-      <Sidebar />
-      <div className="flex-grow-1 p-3">
+      <div className="flex-grow-1 custom-padding">
+        <Navbar />
         <CardComponent />
-        <div className="mb-4"></div>
+        <div className="mb-2"></div>
         <CardSuites />
         {/* Renderiza o CardLegend somente se não for dispositivo móvel */}
         {!isMobile && <CardLegend />}

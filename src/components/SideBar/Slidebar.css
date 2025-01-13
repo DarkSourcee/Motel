@@ -1,110 +1,23 @@
-/* Sidebar geral */
-#wrapper {
+.navbar {
   display: flex;
-}
-
-#sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  background-color: #343a40;
-  color: white;
-  transition: width 0.3s ease;
-}
-
-#sidebar.sidebar-expanded {
-  width: 350px;
-}
-
-#sidebar.sidebar-collapsed {
-  width: 50px;
-}
-
-/* Configuração e sub-itens */
-.settings-menu {
-  margin-top: 10px;
-  margin-left: 0;
-}
-
-.settings-option {
-  display: block;
-  padding: 10px 15px;
-  margin: 5px 0;
-  background-color: #495057;
-  border: 1px solid #868e96;
-  color: white;
-  border-radius: 5px;
-  text-align: center;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.settings-option:hover {
-  background-color: #6c757d;
-  color: white;
-}
-
-/* Configuração - Ícone apenas ao expandir */
-.settings-item h4 .emoji-icon {
-  font-size: 1.5rem;
-}
-
-#page-content-wrapper {
-  transition: margin-left 0.3s ease;
-}
-
-#page-content-wrapper {
-  margin-left: 150px;
-}
-
-/* Botão Hamburguer */
-.hamburger-icon {
-  display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  width: 30px;
-  height: 20px;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.navbar .navbar-brand {
+  font-size: 1.5rem;
+  color: white;
+  text-decoration: none;
+}
+
+.navbar .btn {
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 5px;
   cursor: pointer;
 }
 
-.hamburger-icon .bar {
-  width: 100%;
-  height: 4px;
-  background-color: white;
-  transition: 0.3s;
+.navbar-info {
+  text-align: center;
 }
-
-.hamburger-icon.open .bar1 {
-  transform: rotate(45deg) translateY(6px);
-}
-
-.hamburger-icon.open .bar2 {
-  opacity: 0;
-}
-
-.hamburger-icon.open .bar3 {
-  transform: rotate(-45deg) translateY(-6px);
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-  #sidebar {
-    width: 80px;
-  }
-
-  #sidebar.sidebar-expanded {
-    width: 250px;
-  }
-
-  #page-content-wrapper {
-    margin-left: 80px;
-  }
-}
-
-.btn {
-  font-size: 14px;
-  padding: 4px 8px;
-  border-radius: 4px;
-  color: #ffffff;
-}
-

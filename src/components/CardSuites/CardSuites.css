@@ -1,9 +1,74 @@
 .button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  }
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
 
-  .button:active {
-    transform: translateY(2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+.button:active {
+  transform: translateY(2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Define 10 cards por linha para telas maiores */
+.custom-col {
+  flex: 0 0 10%; /* 10 cards por linha */
+  max-width: 10%;
+  padding: 0.5rem;
+  box-sizing: border-box; /* Inclui o padding e border no cálculo de largura */
+}
+
+/* Ajuste responsivo para diferentes resoluções */
+@media (max-width: 1440px) {
+  .custom-col {
+    flex: 0 0 12.5%; /* 8 cards por linha */
+    max-width: 12.5%;
   }
+}
+
+@media (max-width: 1024px) {
+  .custom-col {
+    flex: 0 0 16.66%; /* 6 cards por linha */
+    max-width: 16.66%;
+  }
+}
+
+@media (max-width: 768px) {
+  .custom-col {
+    flex: 0 0 25%; /* 4 cards por linha */
+    max-width: 25%;
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-col {
+    flex: 0 0 33.33%; /* 3 cards por linha */
+    max-width: 33.33%;
+  }
+}
+
+@media (max-width: 300px) {
+  .custom-col {
+    flex: 0 0 50%; /* 2 cards por linha */
+    max-width: 50%;
+  }
+}
+
+/* Ajuste do texto dentro do card */
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: auto; /* Altura adaptável ao conteúdo */
+  min-height: 120px; /* Garante um tamanho mínimo para os cards */
+}
+
+/* Texto sem truncamento */
+.card-title, .card-text {
+  white-space: normal; /* Permite quebrar linhas */
+  overflow: visible; /* Garante que todo texto seja exibido */
+  text-overflow: clip; /* Remove truncamento com reticências */
+}

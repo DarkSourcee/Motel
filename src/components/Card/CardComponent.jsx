@@ -87,7 +87,7 @@ const CardComponent = () => {
           <div className="card clickable-card text-white bg-primary d-flex align-items-center p-4 rounded-3" onClick={handleCaixaClick}>
             <div className="d-flex flex-column">
               <span>Caixa Atual</span>
-              <div className="display-4">{totalCaixa}</div>
+              <div className="font">{totalCaixa}</div>
             </div>
           </div>
         </div>
@@ -97,7 +97,7 @@ const CardComponent = () => {
           <div className="card clickable-card text-white bg-success d-flex align-items-center p-4 rounded-3" onClick={handleOcupacaoClick}>
             <div className="d-flex flex-column">
               <span>Ocupação das Suítes</span>
-              <strong className="display-4">{ocupacao}/{totalSuites}</strong>
+              <strong className="font">{ocupacao}/{totalSuites}</strong>
             </div>
           </div>
         </div>
@@ -107,7 +107,7 @@ const CardComponent = () => {
           <div className="card clickable-card text-white bg-secondary d-flex align-items-center p-4 rounded-3" onClick={handleSuiteClick}>
             <div className="d-flex flex-column">
               <span>Suítes à espera de arrumação</span>
-              <strong className="display-4">{esperaArrumacao.length}/{totalSuites}</strong>
+              <strong className="font">{esperaArrumacao.length}/{totalSuites}</strong>
             </div>
           </div>
         </div>
@@ -117,7 +117,7 @@ const CardComponent = () => {
           <div className="card clickable-card text-white bg-danger d-flex align-items-center p-4 rounded-3" onClick={handleDesativadasClick}>
             <div className="d-flex flex-column">
               <span>Informações das Suítes</span>
-              <strong className="display-4">{desativadas.length}/{totalSuites}</strong>
+              <strong className="font">{desativadas.length}/{totalSuites}</strong>
             </div>
           </div>
         </div>

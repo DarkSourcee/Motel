@@ -1,3 +1,5 @@
+
+
 .button:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
@@ -12,12 +14,15 @@
 .custom-col {
   flex: 0 0 10%; /* 10 cards por linha */
   max-width: 10%;
-  padding: 0.5rem;
+  /* padding: 0.5rem; */
   box-sizing: border-box; /* Inclui o padding e border no cálculo de largura */
 }
 
 /* Ajuste responsivo para diferentes resoluções */
 @media (max-width: 1440px) {
+  .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    max-width: 2320px;
+}
   .custom-col {
     flex: 0 0 12.5%; /* 8 cards por linha */
     max-width: 12.5%;
@@ -32,16 +37,23 @@
 }
 
 @media (max-width: 768px) {
+  .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    max-width: 2320px;
+}
   .custom-col {
-    flex: 0 0 25%; /* 4 cards por linha */
-    max-width: 25%;
+    /* flex: 0 0 25%; 4 cards por linha */
+    /* max-width: 25%; */
+    flex: 0 0 12.5%; /* 8 cards por linha */
+    max-width: 12.5%;
   }
 }
 
 @media (max-width: 480px) {
   .custom-col {
-    flex: 0 0 33.33%; /* 3 cards por linha */
-    max-width: 33.33%;
+    /* flex: 0 0 33.33%; 3 cards por linha */
+    /* max-width: 33.33%; */
+    flex: 0 0 25%; /* 6 cards por linha */
+    max-width: 25%;
   }
 }
 
@@ -62,8 +74,8 @@
   padding: 1rem;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  height: auto; /* Altura adaptável ao conteúdo */
-  min-height: 120px; /* Garante um tamanho mínimo para os cards */
+  height: 80px; /* auto Altura adaptável ao conteúdo */
+  min-height: 80px; /* 120 Garante um tamanho mínimo para os cards */
 }
 
 /* Texto sem truncamento */

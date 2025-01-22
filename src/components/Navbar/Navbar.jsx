@@ -1,64 +1,66 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import './Navbar.css';
 import getApiUrl from "../../shared/config";
 
 function Navbar() {
-    const [empresa, setEmpresa] = useState(null);
-    const [error, setError] = useState(null);
-    const [mostrarEmpresa, setMostrarEmpresa] = useState(false);
-  
-    const fetchEmpresa = async () => {
-      try {
-        const { url } = getApiUrl(); // Função que retorna a URL da API
-        setMostrarEmpresa((prev) => !prev);
-  
-        if (!mostrarEmpresa) {
-          const response = await axios.get(url);
-          setEmpresa(response.data.empresa);
-          setError(null);
-        }
-      } catch (err) {
-        console.error("Erro ao buscar os dados da empresa:", err);
-        setError("Não foi possível carregar os dados do hotel.");
-      }
-    };
-  
-    return (
-      <nav className="navbar navbar-expand-lg bg-dark text-white">
-        <div className="container-fluid d-flex flex-wrap justify-content-between align-items-center">
-          {/* Marca e ícone */}
-          <a href="/" className="navbar-brand text-white">
-            <span role="img" aria-label="Hotel">
-              🏨
-            </span>{" "}
-            <span className="d-none d-md-inline">Sistema Hotel</span>
+  const [empresa, setEmpresa] = useState(null);
+  const [error, setError] = useState(null);
+
+  // Função para buscar os dados da empresa
+  const fetchEmpresa = async () => {
+    try {
+      const { url } = getApiUrl(); // Função que retorna a URL da API
+      const response = await axios.get(url);
+      setEmpresa(response.data.empresa);
+      setError(null);
+    } catch (err) {
+      console.error("Erro ao buscar os dados da empresa:", err);
+      setError("Não foi possível carregar os dados do Motel.");
+    }
+  };
+
+  // useEffect para buscar os dados ao montar o componente
+  useEffect(() => {
+    fetchEmpresa();
+  }, []);
+
+  return (
+    <nav className="navbar navbar-expand-lg bg-dark text-white">
+      <div className="container-fluid d-flex flex-wrap justify-content-between align-items-center">
+        {/* Marca e ícone */}
+        <a href="/" className="navbar-brand text-white">
+          <span role="img" aria-label="Motel">
+            🏨
+          </span>{" "}
+          <span className="d-md-inline">
+            {empresa && `${empresa}`}
+          </span>
+        </a>
+
+        {/* Botões no modo mobile/tablet */}
+        <div className="d-flex flex-wrap align-items-center">
+          {/* <button onClick={fetchEmpresa} className="btn btn-light btn-sm me-2"> */}
+          <a href="/" ><button   className="btn btn-light btn-sm me-2">
+            Atualizar Motel
+          </button>
           </a>
-  
-          {/* Botões no modo mobile/tablet */}
-          <div className="d-flex flex-wrap align-items-center">
-            <button
-              onClick={fetchEmpresa}
-              className="btn btn-light btn-sm me-2"
-            >
-              {mostrarEmpresa ? "Ocultar Hotel" : "Selecionar Hotel"}
-            </button>
-            <a href="#logout" className="btn btn-danger btn-sm">
-              Sair
-            </a>
-          </div>
+          {/* <a href="#logout" className="btn btn-danger btn-sm">
+            Sair
+          </a> */}
         </div>
-        {/* Informação do hotel selecionado */}
-        {mostrarEmpresa && (
-          <div className="navbar-info bg-secondary text-white p-2 mt-2">
-            {empresa ? (
-              <span>Hotel Selecionado: {empresa}</span>
-            ) : (
-              error || <span>Carregando...</span>
-            )}
-          </div>
+      </div>
+
+      {/* Informação do hotel selecionado */}
+      {/* <div className="navbar-info bg-secondary text-white p-2 mt-2">
+        {empresa ? (
+          <span>{empresa}</span>
+        ) : (
+          error || <span>Carregando...</span>
         )}
-      </nav>
-    );
-  }
+      </div> */}
+    </nav>
+  );
+}
 
 export default Navbar;

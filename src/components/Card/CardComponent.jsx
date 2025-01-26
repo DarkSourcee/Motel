@@ -42,7 +42,7 @@ const CardComponent = () => {
   const suites = data.suites;
   const ocupacao = suites.filter(suite => suite.flag === 'O').length;
   const esperaArrumacao = suites.filter(suite => suite.flag === 'EA');
-  const desativadas = suites.filter(suite => suite.flag === 'D');
+  const desativadas = suites.filter(suite => suite.flag === 'D' || suite.flag === 'M' || suite.flag === 'F');
   const totalSuites = suites.length;
 
   const totalCaixa = caixaData[0]?.caixa || 0.00;

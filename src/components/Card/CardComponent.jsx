@@ -38,7 +38,7 @@ const CardComponent = () => {
   if (!data || !caixaData) {
     return <div>Loading...</div>;
   }
-
+  // comentário p/ teste de git
   const suites = data.suites;
   const ocupacao = suites.filter(suite => suite.flag === 'O').length;
   const esperaArrumacao = suites.filter(suite => suite.flag === 'EA');

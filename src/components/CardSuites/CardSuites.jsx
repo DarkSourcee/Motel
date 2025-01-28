@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './CardSuites.css';
 import getApiUrl from '../../shared/config';
+import ManutencaoSuites from '../Modals/ManutencaoSuites/ManutencaoSuites';
 
 const CardSuites = () => {
   const [suites, setSuites] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedSuite, setSelectedSuite] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -86,6 +89,16 @@ const CardSuites = () => {
     return { background, color };
   };
 
+  const handleCardClick = (suite) => {
+    setSelectedSuite(suite);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setSelectedSuite(null);
+  };
+
   if (loading) {
     return <div className="text-center">Carregando...</div>;
   }
@@ -100,6 +113,7 @@ const CardSuites = () => {
             <div
               className="col-6 col-md-3 col-lg-3 col-xl-1 custom-col"
               key={suite.suite}
+              onClick={() => handleCardClick(suite)}
             >
               <div
                 className="card button"
@@ -119,6 +133,10 @@ const CardSuites = () => {
           );
         })}
       </div>
+
+      {/* Modal de Detalhes da Suíte */}
+      <ManutencaoSuites show={showModal} onHide={closeModal} suite={selectedSuite} />
+      
     </div>
   );
 };

@@ -64,6 +64,10 @@
   }
 }
 
+.card.button {
+  cursor: pointer;
+}
+
 /* Ajuste do texto dentro do card */
 .card {
   display: flex;

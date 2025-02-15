@@ -135,7 +135,7 @@ const CardSuites = () => {
       </div>
 
       {/* Modal de Detalhes da Suíte */}
-      <ManutencaoSuites show={showModal} onHide={closeModal} suite={selectedSuite} />
+      <ManutencaoSuites show={showModal} onHide={closeModal} suite={selectedSuite} flag={selectedSuite?.flag} />
       
     </div>
   );

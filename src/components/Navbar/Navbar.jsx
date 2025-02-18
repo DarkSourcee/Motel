@@ -7,10 +7,9 @@ function Navbar() {
   const [empresa, setEmpresa] = useState(null);
   const [error, setError] = useState(null);
 
-  // Função para buscar os dados da empresa
   const fetchEmpresa = async () => {
     try {
-      const { url } = getApiUrl(); // Função que retorna a URL da API
+      const { url } = getApiUrl(); 
       const response = await axios.get(url);
       setEmpresa(response.data.empresa);
       setError(null);
@@ -20,10 +19,15 @@ function Navbar() {
     }
   };
 
-  // useEffect para buscar os dados ao montar o componente
   useEffect(() => {
     fetchEmpresa();
   }, []);
+
+  const handleLogout = (event) => {
+    event.preventDefault(); 
+    localStorage.setItem("ddns", null);
+    window.location.href = "/login";
+  };
 
   return (
     <nav className="navbar navbar-expand-lg bg-dark text-white">
@@ -45,9 +49,9 @@ function Navbar() {
             Atualizar Motel
           </button>
           </a>
-          {/* <a href="#logout" className="btn btn-danger btn-sm">
+          <a href="/login" className="btn btn-danger btn-sm" onClick={handleLogout}>
             Sair
-          </a> */}
+          </a>
         </div>
       </div>
 

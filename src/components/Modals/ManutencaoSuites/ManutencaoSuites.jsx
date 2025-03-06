@@ -54,6 +54,7 @@ const ManutencaoSuites = ({ show, onHide, suite, flag }) => {
     const formattedDate = brasiliaDateString.replace(',', '').replace(/\//g, '-');
 
     const requestData = {
+      motel: localStorage.getItem('login'),
       suite: suite.suite,
       status_suite: selectedStatus,
       acao: "Ativada",

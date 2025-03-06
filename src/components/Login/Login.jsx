@@ -2,6 +2,8 @@ import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Swal from 'sweetalert2';
 import { useNavigate } from "react-router-dom";
+import CryptoJS from 'crypto-js';
+
 
 export default function Login() {
   const [user, setUser] = useState("");
@@ -16,18 +18,31 @@ export default function Login() {
     setError("");
 
     try {
-      const response = await fetch("/client.json");
-      const users = await response.json();
+      const response = await fetch("https://apex.oracle.com/pls/apex/erpmva/vw_usuarios/");
+
+      if (!response.ok) {
+        Swal.fire({
+          title: 'Erro!',
+          text: 'Erro ao buscar dados da API',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        });
+        throw new Error('Erro ao buscar dados da API');
+      }
+
+      const data = await response.json();
+
+      const users = data.items;
 
       const userFound = users.find(
-        (u) => u.user === user && u.password === password
+        (u) => u.login === user && u.senha === password
       );
 
       setLoading(false);
 
       if (userFound) {
-        // se tiver logado pega pelo ddns
-        await localStorage.setItem("ddns", userFound.ddns);
+        await localStorage.setItem("login", userFound.login);
+        await localStorage.setItem("empresa", userFound.empresa);
         navigate("/");
       } else {
         Swal.fire({
@@ -35,7 +50,7 @@ export default function Login() {
             text: 'Credenciais inválidas',
             icon: 'error',
             confirmButtonText: 'OK',
-          });
+        });
       }
     } catch (err) {
       setLoading(false);

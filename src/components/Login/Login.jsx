@@ -12,6 +12,15 @@ export default function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  const hashPassword = async (password) => {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+    return hashHex.toLowerCase();
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -34,8 +43,10 @@ export default function Login() {
 
       const users = data.items;
 
+      const hashedPassword = await hashPassword(password);
+
       const userFound = users.find(
-        (u) => u.login === user && u.senha === password
+        (u) => u.login === user && u.senha.toLowerCase() === hashedPassword
       );
 
       setLoading(false);
